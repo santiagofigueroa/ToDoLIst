@@ -8,14 +8,10 @@ using System.Threading.Tasks;
 namespace NovaFori.Controllers
 {
     [ApiController]
-    [Route("[controller]")]
+    [Route("api/Tasks")]
     public class TasksToDoController : ControllerBase
     {
-        private static readonly string[] Summaries = new[]
-        {
-            "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
-        };
-
+      
         private readonly ILogger<TasksToDoController> _logger;
 
         public TasksToDoController(ILogger<TasksToDoController> logger)
@@ -23,16 +19,5 @@ namespace NovaFori.Controllers
             _logger = logger;
         }
 
-        [HttpGet]
-        public IEnumerable<TaskToDo> Get()
-        {
-            var rng = new Random();
-            return Enumerable.Range(1, 5).Select(index => new TaskToDo
-            {
-                Date = DateTime.Now.AddDays(index),
-                
-            })
-            .ToArray();
-        }
     }
 }
