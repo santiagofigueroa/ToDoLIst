@@ -7,12 +7,15 @@ namespace NovaFori.Data
 {
     public interface ITaskToDo
     {
-        IEnumerable<TaskToDo> getAllTask { get; }
+        public  IEnumerable<TaskToDo> getAllTask { get; }
 
-        TaskToDo getTaskById(int id);
 
-        IEnumerable<List<TaskToDo>> getCompletedTask();
+        public bool AddToDoTask(TaskToDo task);
 
-        IEnumerable<List<TaskToDo>> getPendingTask();
+        public TaskToDo getTaskById(int id);
+
+        public List<TaskToDo> getCompletedTask();
+
+        public List<TaskToDo> getPendingTask();
     }
 }

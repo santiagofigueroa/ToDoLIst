@@ -5,9 +5,9 @@ namespace NovaFori
     public class TaskToDo
     {
         public int Id { get; set; }
-        public DateTime Date { get; set; }
+        public string Date { get; set; }
 
-        public bool  Done { get; set; }
+        public bool  Completed  { get; set; }
 
         public bool  Pending { get; set;  }
 
