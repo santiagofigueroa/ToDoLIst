@@ -1,16 +1,18 @@
 ﻿using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
+using static System.Console;
 using NovaFori.Data;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace NovaFori.Controllers
 {
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("api/tasks")]
     [EnableCors("GlobalAccess")]
     public class TasksToDoController : ControllerBase
     {
@@ -22,14 +24,28 @@ namespace NovaFori.Controllers
             _context = context;
         }
 
+        /// <summary>
+        /// Get all tasks from API we will see how i
+        /// </summary>
+        /// <returns></returns>
 
         [HttpGet]
-        [EnableCors("GlobalAcess")]
-        public ActionResult<IEnumerable<TaskToDo>>   getALlTasks()
+        [EnableCors("GlobalAccess")]
+        public ActionResult<IEnumerable<TaskToDo>> getALlTasks()
         {
+
+
             var result = _context.getAllTask;
-            // if is ok then add display them
-            return Ok(result);
+
+
+            // 
+            List<TaskToDo> sortedTasks = result.GroupBy(x => x.Date).Select(x => x.First()).ToList();
+            foreach (TaskToDo task in sortedTasks)
+            Console.WriteLine(task.Date + ": " + task.Pending + " Pedding tasks stil to be done");
+
+            //  Schedule to make a Schedule.
+            WriteLine(sortedTasks);
+            return Ok(sortedTasks);
         }
 
 
@@ -40,10 +56,9 @@ namespace NovaFori.Controllers
         /// <returns></returns>
         [HttpPost]
         [EnableCors("GlobalAccess")]
-       public ActionResult<TaskToDo> PostTaskToDo(TaskToDo taskPayload)
+        public ActionResult<TaskToDo> PostTaskToDo(TaskToDo taskPayload)
         {
             return null;
         }
-
     }
 }

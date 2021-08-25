@@ -45,6 +45,11 @@ namespace NovaFori
             services.AddRazorPages();
             // Order needs to be like this.  
 
+
+            services.AddMemoryCache();
+            services.AddSession();
+            services.AddMvc();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
